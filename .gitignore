@@ -1,0 +1,15 @@
+node_modules/
+.next/
+*.log
+*.env
+package-lock.json
+pnpm-lock.yaml
+dist/
+out/
+coverage/
+*.local
+*.DS_Store
+public/qris.png
+node_modules
+node_modules
+node_modules
