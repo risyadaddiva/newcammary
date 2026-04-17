@@ -92,7 +92,17 @@ function Step1CustomerInfo({ customer, onChange, onNext }) {
   return (
     <div className="animate-fade-in space-y-6">
       <div className="text-center pb-4">
-        <div className="text-6xl mb-4">☕</div>
+        <div className="mb-4 flex justify-center">
+          <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gold/30">
+            <Image
+              src="/menu/logo newcam.jpeg"
+              alt="Coffee New Cammary Logo"
+              width={96}
+              height={96}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
         <h1 className="font-display text-4xl font-bold text-cream leading-tight">
           Coffee New<br />
           <span className="text-gold italic">Cammary</span>
@@ -527,7 +537,7 @@ export default function OrderPage() {
             <div className="sticky top-0 z-20 bg-espresso/90 backdrop-blur-md pt-3 pb-1 -mx-4 px-4 border-b border-gold/10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl">☕</span>
+                  {/* <span className="text-xl">☕</span> */}
                   <span className="font-display font-bold text-cream text-sm">Coffee New Cammary</span>
                 </div>
                 {cart.length > 0 && step !== 2 && (

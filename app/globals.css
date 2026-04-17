@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-primary: #1A0805;
-  --bg-card: #2C1410;
-  --bg-card-hover: #3D1F14;
-  --text-primary: #F5EDD8;
-  --text-secondary: #C8B89A;
-  --text-muted: #8A6A55;
-  --gold: #C9880C;
-  --gold-light: #E8A820;
-  --gold-pale: #F5D080;
-  --border: rgba(201, 136, 12, 0.2);
-  --border-hover: rgba(201, 136, 12, 0.5);
+  --bg-primary: #F8F9FA;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F1F3F6;
+  --text-primary: #23272F;
+  --text-secondary: #4F5D75;
+  --text-muted: #A0AEC0;
+  --gold: #FFD600;
+  --gold-light: #FFF176;
+  --gold-pale: #FFF9C4;
+  --border: rgba(255, 214, 0, 0.2);
+  --border-hover: rgba(255, 214, 0, 0.5);
 }
 
 * {
@@ -29,7 +29,7 @@ html {
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
   min-height: 100vh;
 }
 
