@@ -246,7 +246,7 @@ function Step2Menu({ cart, onUpdateCart, onNext, onBack }) {
       </div>
 
       {totalItems > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-transparent">
+        <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] left-0 right-0 z-50 px-4">
           <button 
             onClick={onNext} 
               className="btn-gold w-full text-base shadow-2xl shadow-gold/30"
