@@ -36,14 +36,14 @@ function buildWhatsAppMessage({ customer, cart, deliveryType, paymentMethod, tot
 
   const paymentLine =
     paymentMethod === 'qris'
-      ? '💳 QRIS (bukti bayar abis ini /  dikirim)'
+      ? '💳 QRIS (bukti bayar abis ini dikirim)'
       : '💵 Cash (bayar di toko/kurir)';
 
   return `Halo Coffee New Cammary! 👋
 
 Saya ${customer.name} mau order nih. Berikut detail pesanan saya:
 
-🛒 *Pesanan:*
+*Pesanan:*
 ${itemLines}
 
 ${deliveryLine}
