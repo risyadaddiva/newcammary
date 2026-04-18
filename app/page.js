@@ -367,7 +367,7 @@ function Step4Payment({ cart, deliveryType, paymentMethod, setPaymentMethod, onB
         <div className="flex gap-2 items-center">
           <span>{deliveryType === 'pickup' ? '🏠' : '🚚'}</span>
           <span className="text-cream/70 font-body">
-            {deliveryType === 'pickup' ? 'Ambil di toko' : 'Delivery (alamat dikonfirmasi admin)'}
+            {deliveryType === 'pickup' ? 'Ambil di toko' : 'Delivery (konfirmasi alamat ke admin)'}
           </span>
         </div>
       </div>
