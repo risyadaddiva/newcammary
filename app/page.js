@@ -246,8 +246,11 @@ function Step2Menu({ cart, onUpdateCart, onNext, onBack }) {
       </div>
 
       {totalItems > 0 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-full max-w-md px-6">
-          <button onClick={onNext} className="btn-gold w-full text-base shadow-2xl shadow-gold/30">
+        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-transparent">
+          <button 
+            onClick={onNext} 
+              className="btn-gold w-full text-base shadow-2xl shadow-gold/30"
+          >
             Lanjut ({totalItems} item) →
           </button>
         </div>
