@@ -301,7 +301,7 @@ function Step3Delivery({ deliveryType, setDeliveryType, onNext, onBack }) {
           <div className="flex gap-3 items-start">
             <span className="text-2xl">📍</span>
             <div>
-              <p className="font-body font-bold text-cream text-sm">Lokasi Toko</p>
+              <p className="font-body font-bold text-cream text-sm">Lokasi Kedai Kami</p>
               <p className="text-cream/60 text-xs mt-0.5">{SHOP_ADDRESS}</p>
               <a
                 href="https://maps.google.com/?q=Coffee+New+Cammary+Jl+Manisi+Cipadung+Bandung"
@@ -318,7 +318,7 @@ function Step3Delivery({ deliveryType, setDeliveryType, onNext, onBack }) {
 
       {deliveryType === 'delivery' && (
         <div className="animate-fade-in space-y-3">
-          <p className="text-cream/70 text-sm font-body">Alamat pengiriman akan dikonfirmasi admin melalui WhatsApp setelah order.</p>
+          <p className="text-cream/70 text-sm font-body">Tolong konfirmasi alamat pengiriman ke admin melalui WhatsApp setelah order.</p>
         </div>
       )}
 
@@ -359,7 +359,7 @@ function Step4Payment({ cart, deliveryType, paymentMethod, setPaymentMethod, onB
           <span className="text-gold font-bold font-display text-xl">{formatRupiah(total)}</span>
         </div>
         {deliveryType === 'delivery' && (
-          <p className="text-cream/40 text-xs">* Ongkir akan dikonfirmasi oleh admin via WhatsApp</p>
+          <p className="text-cream/40 text-xs">* Belum termasuk ongkir (akan dikonfirmasi admin via WhatsApp)</p>
         )}
       </div>
 
