@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { menuCategories, formatRupiah } from '@/lib/menu';
 // MapPicker dihapus, ongkir akan dikonfirmasi admin via WhatsApp
 
 const SHOP_WHATSAPP = '6285801611630';
 const SHOP_ADDRESS = 'Jl. Manisi, Cipadung, Kec. Cibiru, Kota Bandung, Jawa Barat 40614';
-
+const SHOP_INSTAGRAM = 'coffee_newcammary';
 const STEPS = [
   { id: 1, label: 'Info' },
   { id: 2, label: 'Menu' },
@@ -32,12 +32,12 @@ function buildWhatsAppMessage({ customer, cart, deliveryType, paymentMethod, tot
   const deliveryLine =
     deliveryType === 'delivery'
       ? `🚚 Delivery (alamat nya aku kirim habis ini)`
-      : '🏠 Pickup di toko';
+      : '🏠 Pickup di kedai';
 
   const paymentLine =
     paymentMethod === 'qris'
       ? '💳 QRIS (bukti bayar abis ini dikirim)'
-      : '💵 Cash (bayar di toko/kurir)';
+      : '💵 Cash (bayar di kedai/kurir)';
 
   return `Halo Coffee New Cammary! 👋
 
@@ -484,7 +484,7 @@ function SuccessPage({ paymentMethod, onNewOrder }) {
       </div>
 
       <div className="card-coffee text-left space-y-3">
-        <p className="text-gold text-xs font-bold uppercase tracking-widest">Info Toko</p>
+        <p className="text-gold text-xs font-bold uppercase tracking-widest">Coffee New Cammary</p>
         <div className="flex gap-2 text-sm">
           <span>📍</span>
           <p className="text-cream/70 font-body">{SHOP_ADDRESS}</p>
@@ -492,6 +492,17 @@ function SuccessPage({ paymentMethod, onNewOrder }) {
         <div className="flex gap-2 text-sm">
           <span>📱</span>
           <p className="text-cream/70 font-body">WhatsApp: {SHOP_WHATSAPP}</p>
+        </div>
+        <div className="flex gap-2 text-sm">
+          <a
+                href="https://instagram.com/coffee_newcammary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold text-xs font-bold mt-2 inline-flex items-center gap-1 hover:text-gold-light"
+              >
+              📸  
+              Instagram: @{SHOP_INSTAGRAM}
+              </a>
         </div>
       </div>
 
@@ -508,6 +519,21 @@ export default function OrderPage() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [showQRIS, setShowQRIS] = useState(false);
   const [isDone, setIsDone] = useState(false);
+  const [isShopActive, setIsShopActive] = useState(true);
+  const [isLoadingStatus, setIsLoadingStatus] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/status')
+      .then(res => res.json())
+      .then(data => {
+        setIsShopActive(data.isActive);
+        setIsLoadingStatus(false);
+      })
+      .catch(() => {
+        setIsShopActive(true);
+        setIsLoadingStatus(false);
+      });
+  }, []);
 
   const total = useMemo(() => cart.reduce((s, i) => s + i.price * i.qty, 0), [cart]);
 
@@ -528,6 +554,31 @@ export default function OrderPage() {
     setDeliveryType('pickup');
     setPaymentMethod(''); setShowQRIS(false); setIsDone(false);
   };
+
+  if (isLoadingStatus) {
+    return (
+      <main className="relative min-h-screen flex items-center justify-center bg-[#1A0805]">
+        <div className="animate-pulse text-gold font-body">Bentar...</div>
+      </main>
+    );
+  }
+
+  if (!isShopActive) {
+    return (
+      <main className="relative min-h-screen flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-gradient-to-b from-[#1A0805] via-[#1A0805] to-[#100503] z-0" />
+        <div className="relative z-10 text-center space-y-6 max-w-sm mx-auto p-8 bg-[#2A1612] rounded-3xl border border-gold/20 shadow-2xl">
+          <div className="text-6xl animate-bounce">😴</div>
+          <h1 className="font-display text-3xl font-bold text-cream">Mohon Maaf</h1>
+          <p className="text-cream/70 font-body text-lg">Kurir nya lagi istirahat</p>
+          <div className="w-16 h-px bg-gold/40 mx-auto mt-4" />
+          <p className="text-cream/40 text-sm font-body mt-2">Coffee New Cammary</p>
+          <p className="text-cream/40 text-sm font-body mt-2">Buka setiap hari jam 10.00 - 00.00</p>
+          <p className="text-cream/40 text-sm font-body mt-2">kalo mau ngopi langsung ke Kedai aja</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="relative min-h-screen">
