@@ -1,4 +1,5 @@
 import './globals.css';
+import SessionProvider from '@/components/pos/SessionProvider';
 
 export const metadata = {
   title: 'Coffee New Cammary — Order Online',
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }
