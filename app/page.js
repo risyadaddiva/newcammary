@@ -523,7 +523,9 @@ export default function OrderPage() {
   const [isLoadingStatus, setIsLoadingStatus] = useState(true);
 
   useEffect(() => {
-    fetch('/api/status')
+    // Menambahkan cache: 'no-store' dan parameter waktu agar selalu mengambil data terbaru di production
+    const timestamp = new Date().getTime();
+    fetch(`/api/status?t=${timestamp}`, { cache: 'no-store' })
       .then(res => res.json())
       .then(data => {
         setIsShopActive(data.isActive);

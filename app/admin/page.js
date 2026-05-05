@@ -12,7 +12,8 @@ export default function AdminActivationPage() {
   // Fetch initial status when authenticated
   useEffect(() => {
     if (isAuthenticated) {
-      fetch("/api/status")
+      const timestamp = new Date().getTime();
+      fetch(`/api/status?t=${timestamp}`, { cache: 'no-store' })
         .then((res) => res.json())
         .then((data) => setIsActive(data.isActive));
     }
